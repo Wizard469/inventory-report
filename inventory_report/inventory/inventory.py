@@ -15,6 +15,9 @@ class Inventory:
         elif path.endswith(".xml"):
             report_list = Inventory.read_xml(path)
 
+        return Inventory.select_type(report_list, type)
+
+    def select_type(report_list, type):
         if type == "simples":
             return SimpleReport.generate(report_list)
         elif type == "completo":
