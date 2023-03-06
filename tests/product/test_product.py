@@ -2,7 +2,11 @@ from inventory_report.inventory.product import Product
 from datetime import datetime as dt
 
 start_date = dt.now().date()
-end_date = start_date.replace(start_date.year + 1)
+
+if start_date.month == 3 and start_date.day == 29:
+    end_date = start_date.replace(start_date.year + 1, 3, start_date.day - 1)
+else:
+    end_date = start_date.replace(start_date.year + 1)
 
 
 def test_cria_produto():
