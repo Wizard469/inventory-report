@@ -1,6 +1,7 @@
 from inventory_report.reports.simple_report import SimpleReport
 from collections import Counter
 
+
 class CompleteReport(SimpleReport):
     @staticmethod
     def generate(report):
@@ -15,7 +16,4 @@ class CompleteReport(SimpleReport):
 
         formatted = "".join(format)
 
-        return (
-            f"{simple_report}\n"
-            f"{formatted}"
-        )
+        return f"{simple_report}\n" f"{formatted}"
