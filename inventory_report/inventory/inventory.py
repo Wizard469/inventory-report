@@ -1,12 +1,16 @@
 from inventory_report.reports.simple_report import SimpleReport
 from inventory_report.reports.complete_report import CompleteReport
 import csv
+import json
 
 
 class Inventory:
     @staticmethod
     def import_data(path, type):
-        report_list = Inventory.read_csv(path)
+        if path.endswith(".csv"):
+            report_list = Inventory.read_csv(path)
+        elif path.endswith(".json"):
+            report_list = Inventory.read_json(path)
 
         if type == "simples":
             return SimpleReport.generate(report_list)
@@ -20,3 +24,7 @@ class Inventory:
             for report in reports:
                 report_list.append(report)
         return report_list
+
+    def read_json(path):
+        with open(path) as f:
+            return json.load(f)
