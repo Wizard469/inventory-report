@@ -9,27 +9,27 @@ class Inventory:
     @staticmethod
     def import_data(path, type):
         if path.endswith(".csv"):
-            report_list = Inventory.read_csv(path)
+            product_list = Inventory.read_csv(path)
         elif path.endswith(".json"):
-            report_list = Inventory.read_json(path)
+            product_list = Inventory.read_json(path)
         elif path.endswith(".xml"):
-            report_list = Inventory.read_xml(path)
+            product_list = Inventory.read_xml(path)
 
-        return Inventory.select_type(report_list, type)
+        return Inventory.select_type(product_list, type)
 
-    def select_type(report_list, type):
+    def select_type(product_list, type):
         if type == "simples":
-            return SimpleReport.generate(report_list)
+            return SimpleReport.generate(product_list)
         elif type == "completo":
-            return CompleteReport.generate(report_list)
+            return CompleteReport.generate(product_list)
 
     def read_csv(path):
-        report_list = []
+        product_list = []
         with open(path) as f:
-            reports = csv.DictReader(f)
-            for report in reports:
-                report_list.append(report)
-        return report_list
+            products = csv.DictReader(f)
+            for product in products:
+                product_list.append(product)
+        return product_list
 
     def read_json(path):
         with open(path) as f:
